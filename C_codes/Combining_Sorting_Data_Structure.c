@@ -71,27 +71,37 @@ int main()
     Bubble_Sort(CSE_B,nB);
 
     k = 0;
-
-    // for(i = 0; i < nA; i++)
-    // {
-    //     for(j = temp; j < nB; j++)
-    //     {
-    //         if(CSE_A[i].marks>CSE_B[j].marks)
-    //         {
-    //             CSE[k] = CSE_B[j];
-    //             //printf("In if %.1f\n",CSE[k].marks);
-    //             k++;
-    //         }
-    //         else
-    //         {
-    //             CSE[k] = CSE_A[i];
-    //             //printf("In else %.1f\n",CSE[k].marks);
-    //             temp = j;
-    //             k++;
-    //             break;
-    //         }
-    //     }
-    // }
+    i = 0, j = 0;
+    while((i < nA)||(j < nB))
+    {
+        if(CSE_A[i].marks>CSE_B[j].marks)
+        {
+            CSE[k++] = CSE_B[j++];
+            //printf("In if %.1f\n",CSE[k].marks);
+        }
+        
+        else
+        {
+            CSE[k++] = CSE_A[i++];
+            //printf("In else %.1f\n",CSE[k].marks);
+        }
+    }
+    
+    if(i!=(nA-1))
+    {
+        for(; i < nA; i++)
+        {
+            CSE[k++] = CSE_A[i];
+        }
+    }
+    
+    else if(j!=(nB-1))
+    {
+        for(; j < nB; j++)
+        {
+            CSE[k++] = CSE_B[j];
+        }
+    }
 
     printf("The final list of CSE students: \n");
     for(i = 0; i < (nA+nB); i++)
