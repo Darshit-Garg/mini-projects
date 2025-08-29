@@ -7,6 +7,31 @@ typedef struct
     int y;
 }point;
 
+void SelectionSort(int [],int n);
+
+void SelectionSort(int a[],int n)
+{
+    int min_index;
+    int t;
+    for(int j = 0; j < n-1; j++)
+    {
+        min_index = j;
+        for(int i = j + 1; i < n; i++)
+        {
+            if(a[i]<a[min_index])
+            {
+                min_index = i;
+            }
+            if(min_index!=j)
+            {
+                t = a[min_index];
+                a[min_index] = a[i];
+                a[i] = t;    
+            }
+        }
+    }
+}
+
 int main()
 {
 	int N;
