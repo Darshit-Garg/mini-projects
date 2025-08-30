@@ -7,41 +7,49 @@ typedef struct
     int y;
 }point;
 
-void SelectionSort(int [],int n);
+void SelectionSort(point [],int n);
 
-void SelectionSort(int a[],int n)
+void SelectionSort(point a[],int n)
 {
     int min_index;
-    int t;
+    point t;
     for(int j = 0; j < n-1; j++)
     {
         min_index = j;
         for(int i = j + 1; i < n; i++)
         {
-            if(a[i]<a[min_index])
+            if(a[i].x<a[min_index].x)
             {
                 min_index = i;
             }
-            if(min_index!=j)
-            {
-                t = a[min_index];
-                a[min_index] = a[i];
-                a[i] = t;    
-            }
+        }
+        if(min_index!=j)
+        {
+            t = a[min_index];
+            a[min_index] = a[j];
+            a[j] = t;    
         }
     }
+    return;
 }
 
 int main()
 {
 	int N;
+    int X;
     scanf("%d",&N);
     point points[N];
     for(int i = 0; i < N; i++)
     {
     	scanf("%d%d",&points[i].x,&points[i].y);
 	}
-    int X;
+    SelectionSort(points,N);    
+
+    // printf("The points in sorted order:\n");
+    // for(int i = 0; i < N; i++)
+    // {
+    //     printf("%d %d\n",points[i].x,points[i].y);
+    // }
     X = points[0].x;
     point min[N];
     min[0] = points[0];
