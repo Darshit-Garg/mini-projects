@@ -85,6 +85,18 @@ int main()
         }
 	}
 
+    // for(int i = 1; i < j-1; i++)
+    // {
+    //     if(min[i-1].y < min[i].y && min[i+1].y < min[i].y)
+    //     {
+    //         for(int k = i; k < j-1; k++)
+    //         {
+    //             min[k] = min[k+1];
+    //         }
+    //         j--;
+    //     }
+    // }
+
     float Perimeter = 0;
     
 	for(int i = 0; i < count-1; i++)
