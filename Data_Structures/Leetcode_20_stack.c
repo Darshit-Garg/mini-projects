@@ -15,7 +15,8 @@ void push(char x);
 bool isfull();
 bool isempty();
 char pop();
-char view();
+void view();
+void clear();
 
 bool isValid(char* s);
 
@@ -42,9 +43,18 @@ char pop()
     }
 }
 
-char view()
+void view()  //This function is just there to check the state of stack at any time
 {
-    return stack[top].element;
+    if(top==-1)
+    {
+        printf("Empty");
+    }
+    for(int i = 0; i <= top; i++)
+    {
+        printf("%c ",stack[i].element);
+        
+    }
+    printf("\n");
 }
 
 bool isfull()
@@ -65,51 +75,54 @@ bool isempty()
     return false;
 }
 
+void clear()
+{
+    top = -1;
+}
+
 bool isValid(char* s) 
 {
     int length = strlen(s);
-    char arr[length];
-    int j = 0;
+    clear();
+    //view();
     for(int i = 0; i < length; i++)
     {
-        //printf("%c",*(s+i));
-        if(*(s+i)=='('||*(s+i)=='{'||*(s+i)=='[')
+        if((*(s+i)=='(')||(*(s+i)=='{')||(*(s+i)=='['))
         {
-        //    printf("in if %d\n", i);
             push(*(s+i));
+            //view();
         }
         else
         {
-            switch(pop())
+            switch(*(s+i))
             {
                 case '}':
-                    if(view()=='{')
+                    if((top!=-1) && (stack[top].element=='{'))
                     {
-                    //    printf("in case 1\n");
                         top--;
+                        //view();
                     }
                     else
                     {
-                    //    printf("in else case 1\n");
                         return false;
                     }
                     break;
                 case ')':
-                    if(view()=='(')
+                    if((top!=-1) && (stack[top].element=='('))
                     {
-                    //    printf("in case 2\n");
                         top--;
+                        //view();
                     }
                     else
                     {
-                    //    printf("in else case 2\n");
                         return false;
                     }
                     break;
                 case ']':
-                    if(view() == '[')
+                    if((top!=-1) && (stack[top].element=='['))
                     {
                         top--;
+                        //view();
                     }
                     else
                     {
@@ -134,9 +147,13 @@ int main()
     scanf("%d",&n);
     char word[n];
     scanf("%*c%[^\n]%*c",word);
-    //printf("%d\n",strlen(word));
-    //int length = sizeof(word)/sizeof(word[0]);
-    //printf("%d",length);
-    printf("%d",isValid(word));
+    if(isValid(word))
+    {
+        printf("true\n");
+    }
+    else
+    {
+        printf("false"\n);
+    }
     return 0;
 }
